@@ -29,6 +29,7 @@ func main() {
 		fmt.Println(err)
 		panic("Failed to connect database.")
 	}
+
 	defer db.Close()
 
 	db.AutoMigrate(&Product{})
