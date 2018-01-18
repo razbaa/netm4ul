@@ -3,8 +3,19 @@ package recon
 import (
 	"fmt"
 	"net/http"
+	"net"
 	"io/ioutil"
+	"time"
+	//"os"
+	//"strings
+	"log"
 )
+
+func checkErr(e error) {
+	if e != nil {
+		log.Fatal("Error : ", e)
+	}
+}
 
 func Scan_output() {
 	fmt.Println("Scan module!")
@@ -22,4 +33,26 @@ func Shodan_search(ip string) {
 		data, _ := ioutil.ReadAll(reply.Body)
 		fmt.Println(string(data))
 	}
+}
+
+func Whois_search(domain string)(string) {
+
+	fmt.Println("Whois search incoming!!")
+
+	ip, err := net.LookupIP(domain)
+	checkErr(err)
+
+	connection, err := net.DialTimeout("tcp", net.JoinHostPort("whois.apnic.net", "43"), time.Second * 5)
+	checkErr(err)
+
+	defer connection.Close()
+
+	connection.Write([]byte(ip[0].String() + "\r\n"))
+
+	buffer, err := ioutil.ReadAll(connection)
+	checkErr(err)
+
+	ret := string(buffer)
+
+	return ret
 }
