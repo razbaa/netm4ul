@@ -8,15 +8,19 @@ import (
 	"net"
 )
 
-
+//get ip from domain name
 func get_ip_from_domain(domain string) (ip_str string) {
+	//retrieve ip
 	ip, err := net.LookupIP(domain)
+	//handle error
 	modules.Check_err(err)
+	//get string ip
 	ip_str = ip[0].String()
-	fmt.Println(ip_str)
+	//return
 	return
 }
 
+//Run fonction
 func Run(domain string, api_key string) (data string){
 	fmt.Println("Shodan!")
 	ip := get_ip_from_domain(domain)
@@ -28,5 +32,6 @@ func Run(domain string, api_key string) (data string){
 	temp, _ := ioutil.ReadAll(reply.Body)
 	//convert data to string
 	data = string(temp)
+	//return
 	return
 }
