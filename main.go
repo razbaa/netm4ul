@@ -9,8 +9,11 @@ import (
 
 //main function
 func main() {
-	//print from main package
-	fmt.Println("- NetM4ul -")
 	//165.225.76.71 AFTI_ip
-	fmt.Println(recon.Whois("bruneau.fr"))
+	//NETM4UL motherfucker
+	fmt.Println("- NetM4ul -")
+	//shodan test
+	fmt.Println(recon.Shodan("bruneau.fr"))
+	//whois test
+	//fmt.Println(recon.Whois("bruneau.fr"))
 }
