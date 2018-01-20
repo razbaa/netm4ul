@@ -1,5 +1,7 @@
 package shodan
 
+import "fmt"
+
 type Shodan struct {
 	region_code string
 	tags string
@@ -10,5 +12,6 @@ type Shodan struct {
 }
 
 func Parse (data string) (shodan_struct Shodan, err error) {
-
+	fmt.Println("Yipi")
+	return
 }

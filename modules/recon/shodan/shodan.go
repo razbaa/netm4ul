@@ -22,7 +22,7 @@ func get_ip_from_domain(domain string) (ip_str string) {
 
 //Run fonction
 func Run(domain string, api_key string) (data string){
-	fmt.Println("Shodan!")
+	//retrieve ip from domain name
 	ip := get_ip_from_domain(domain)
 	//shodan api https://api.shodan.io/shodan/host/{ip}?key={YOUR_API_KEY}
 	reply, err := http.Get("https://api.shodan.io/shodan/host/" + ip + "?key=" + api_key)
