@@ -6,14 +6,8 @@ import (
 	"time"
 	"strings"
 	"io/ioutil"
-	"log"
+	"github.com/netm4ul/netm4ul/modules"
 )
-
-func checkErr(e error) {
-	if e != nil {
-		log.Fatal("Error : ", e)
-	}
-}
 
 //Check if passed domain is really a domain name
 func check_domain(domain string) (zone string, err error) {
@@ -54,13 +48,13 @@ func Run(domain string) (result string) {
 	//get zone
 	zone, err := check_domain(domain)
 	//handle error
-	checkErr(err)
+	modules.Check_err(err)
 	//retrieve whois server
 	whois_server, err := get_whois_server(zone)
 	//connect to whois server on port 43 (timeout needed to get reply)
 	connection, err := net.DialTimeout("tcp", net.JoinHostPort(whois_server, "43"), time.Second * 5)
 	//handle error
-	checkErr(err)
+	modules.Check_err(err)
 	//handle socket closure
 	defer connection.Close()
 	//send data to whois server
@@ -68,7 +62,7 @@ func Run(domain string) (result string) {
 	//get data from whois server
 	buffer, err := ioutil.ReadAll(connection)
 	//handle error
-	checkErr(err)
+	modules.Check_err(err)
 	//return whois data
 	result = string(buffer[:])
 

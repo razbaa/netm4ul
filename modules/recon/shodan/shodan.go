@@ -4,18 +4,18 @@ import (
 	"fmt"
 	"net/http"
 	"io/ioutil"
+	"github.com/netm4ul/netm4ul/modules"
 )
 
-func Shodan_search(ip string) {
+func Run(ip string, api_key string) (data string){
 	fmt.Println("Shodan!")
 	//shodan api https://api.shodan.io/shodan/host/{ip}?key={YOUR_API_KEY}
-	api_key := "my_api_key"
 	reply, err := http.Get("https://api.shodan.io/shodan/host/" + ip + "?key=" + api_key)
-
-	if err != nil{
-		fmt.Println(err)
-	} else {
-		data, _ := ioutil.ReadAll(reply.Body)
-		fmt.Println(string(data))
-	}
+	//handle error
+	modules.Check_err(err)
+	//retrieve data
+	temp, _ := ioutil.ReadAll(reply.Body)
+	//convert data to string
+	data = string(temp)
+	return
 }
