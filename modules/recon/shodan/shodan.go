@@ -9,7 +9,7 @@ import (
 func Shodan_search(ip string) {
 	fmt.Println("Shodan!")
 	//shodan api https://api.shodan.io/shodan/host/{ip}?key={YOUR_API_KEY}
-	api_key := "eLrejd2wwMlxr3Ktxa0RR8u1qlnyauuk"
+	api_key := "my_api_key"
 	reply, err := http.Get("https://api.shodan.io/shodan/host/" + ip + "?key=" + api_key)
 
 	if err != nil{

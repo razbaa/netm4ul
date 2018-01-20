@@ -14,8 +14,9 @@ func checkErr(e error) {
 	}
 }
 
-func Whois(domain string) {
+func Whois(domain string) (data string){
 	fmt.Println("----------Whois module module----------")
-
+	data = whois.Run(domain)
+	return data
 }
 

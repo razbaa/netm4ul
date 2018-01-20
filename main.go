@@ -12,5 +12,5 @@ func main() {
 	//print from main package
 	fmt.Println("- NetM4ul -")
 	//165.225.76.71 AFTI_ip
-	fmt.Println(recon.whois.Run())
+	fmt.Println(recon.Whois("bruneau.fr"))
 }
